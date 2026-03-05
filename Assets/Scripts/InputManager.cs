@@ -7,6 +7,12 @@ public class InputManager : MonoBehaviour
 
     public event Action JumpInputPressed;
 
+    public float MouseX => Input.GetAxis("Mouse X");
+    public float MouseY => Input.GetAxis("Mouse Y");
+
+    public float HorizontalAxis => Input.GetAxis("Horizontal");
+    public float VerticalAxis => Input.GetAxis("Vertical");
+
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -24,5 +30,7 @@ public class InputManager : MonoBehaviour
         {
             JumpInputPressed?.Invoke();
         }
+
+        //HorizontalAxis = Input.GetAxis("Horizontal");
     }
 }
