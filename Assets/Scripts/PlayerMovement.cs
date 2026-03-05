@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+
     [SerializeField] private float _movementSpeed;
     [SerializeField] private float _jumpForce;
     [SerializeField] private Rigidbody _rigidbody;
@@ -10,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _groundCheckSphereRadius = 0.5f;
     [SerializeField] private LayerMask _groundLayer;
     [SerializeField] private Transform _groundCheckPosition;
-
+    [SerializeField] private Transform _cameraHolderX;
 
     void Start()
     {
@@ -47,9 +48,9 @@ public class PlayerMovement : MonoBehaviour
 
         _rigidbody.MovePosition(_rigidbody.position + velocity);
 
+        transform.Rotate(0, InputManager.Instance.MouseX * Time.fixedDeltaTime, 0);
+        _cameraHolderX.Rotate(InputManager.Instance.MouseY * Time.fixedDeltaTime * -1, 0, 0);
     }
-
-
 
     private void OnDrawGizmos()
     {
