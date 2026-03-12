@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask _groundLayer;
     [SerializeField] private Transform _groundCheckPosition;
     [SerializeField] private Transform _cameraHolderX;
+    [SerializeField] private Transform _camera;
 
     void Start()
     {
@@ -39,17 +40,20 @@ public class PlayerMovement : MonoBehaviour
         _rigidbody.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
     }
 
+    private void LateUpdate()
+    {
+        transform.rotation = Quaternion.Euler(0, _camera.rotation.eulerAngles.y, 0);
+    }
+
     void  FixedUpdate()
     {
-        Vector3 directionF = transform.forward * _movementSpeed * InputManager.Instance.VerticalAxis * Time.fixedDeltaTime;
-        Vector3 directionH = transform.right * _movementSpeed * InputManager.Instance.HorizontalAxis * Time.fixedDeltaTime;
+        Vector3 directionF = _camera.forward * _movementSpeed * InputManager.Instance.VerticalAxis * Time.fixedDeltaTime;
+        Vector3 directionH = _camera.right * _movementSpeed * InputManager.Instance.HorizontalAxis * Time.fixedDeltaTime;
+        directionF.y = 0;
+        directionH.y = 0;
+        
 
-        Vector3 velocity = directionF + directionH;
-
-        _rigidbody.MovePosition(_rigidbody.position + velocity);
-
-        transform.Rotate(0, InputManager.Instance.MouseX * Time.fixedDeltaTime, 0);
-        _cameraHolderX.Rotate(InputManager.Instance.MouseY * Time.fixedDeltaTime * -1, 0, 0);
+        _rigidbody.MovePosition(_rigidbody.position + directionF + directionH);    
     }
 
     private void OnDrawGizmos()
