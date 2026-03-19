@@ -7,6 +7,7 @@ public class InputManager : MonoBehaviour
 
     public event Action JumpInputPressed;
     public event Action LeftMouseClick;
+    public event Action RightMouseClick;
 
     [SerializeField] private float _mouseSensitivity;
     [SerializeField] private bool _cursorVisible;
@@ -17,8 +18,7 @@ public class InputManager : MonoBehaviour
     public float HorizontalAxis => Input.GetAxis("Horizontal");
     public float VerticalAxis => Input.GetAxis("Vertical");
 
-
-
+    
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -43,6 +43,11 @@ public class InputManager : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             LeftMouseClick?.Invoke();
+        } 
+       
+        if (Input.GetMouseButtonDown(1))
+        {
+            RightMouseClick?.Invoke();
         }
 
         MouseX = Input.GetAxis("Mouse X") * _mouseSensitivity;
