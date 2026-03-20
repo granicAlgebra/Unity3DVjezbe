@@ -369,7 +369,9 @@ MonoBehaviour:
   _characterController: {fileID: 172306906}
   _camera: {fileID: 963194228}
   _movementSpeed: 10
-  _jumpVelocity: 7
+  _jumpVelocity: 10
+  _directionalRotationSpeed: 15
+  _slideFriction: 5
 --- !u!114 &172306908
 MonoBehaviour:
   m_ObjectHideFlags: 0
