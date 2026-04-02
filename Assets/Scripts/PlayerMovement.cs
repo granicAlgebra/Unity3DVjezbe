@@ -14,6 +14,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform _cameraHolderX;
     [SerializeField] private Transform _camera;
 
+    public event Action Jump;
+
     void Start()
     {
         InputManager.Instance.JumpInputPressed += OnJumpPressed;
@@ -21,8 +23,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnJumpPressed()
     {
-        Debug.Log("Jump");
-
         // U hitInfo spremamo podatke o rajcastu
         RaycastHit hitInfo;
 
@@ -36,6 +36,7 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
+        Jump?.Invoke();
         // ovdje prosiriti logiku i dodati jump funkcionalnost
         _rigidbody.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
     }

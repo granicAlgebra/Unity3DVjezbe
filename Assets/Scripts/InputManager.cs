@@ -17,7 +17,10 @@ public class InputManager : MonoBehaviour
 
     public float HorizontalAxis => Input.GetAxis("Horizontal");
     public float VerticalAxis => Input.GetAxis("Vertical");
+    public float Sprint => Input.GetAxis("Sprint");
+    public float Walk => Input.GetAxis("Walk");
 
+    public float Attack => Input.GetAxis("Fire1");
     
     void Awake()
     {
@@ -53,6 +56,7 @@ public class InputManager : MonoBehaviour
         MouseX = Input.GetAxis("Mouse X") * _mouseSensitivity;
         MouseY = Input.GetAxis("Mouse Y") * _mouseSensitivity;
 
+        
         //Horizon => Input.GetAxis("Mouse Y")talAxis = Input.GetAxis("Horizontal");
     }
 }
