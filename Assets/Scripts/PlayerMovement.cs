@@ -48,13 +48,15 @@ public class PlayerMovement : MonoBehaviour
 
     void  FixedUpdate()
     {
-        Vector3 directionF = _camera.forward * _movementSpeed * InputManager.Instance.VerticalAxis * Time.fixedDeltaTime;
-        Vector3 directionH = _camera.right * _movementSpeed * InputManager.Instance.HorizontalAxis * Time.fixedDeltaTime;
-        directionF.y = 0;
-        directionH.y = 0;
-        
+        Vector3 rawDir = _camera.forward * InputManager.Instance.VerticalAxis
+                       + _camera.right  * InputManager.Instance.HorizontalAxis;
+        rawDir.y = 0;
 
-        _rigidbody.MovePosition(_rigidbody.position + directionF + directionH);    
+        // Clamp to magnitude 1 — prevents diagonal movement being ~41% faster than cardinal
+        if (rawDir.sqrMagnitude > 1f)
+            rawDir = rawDir.normalized;
+
+        _rigidbody.MovePosition(_rigidbody.position + rawDir * _movementSpeed * Time.fixedDeltaTime);
     }
 
     private void OnDrawGizmos()

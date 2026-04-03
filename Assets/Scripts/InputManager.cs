@@ -15,13 +15,12 @@ public class InputManager : MonoBehaviour
     public float MouseX;
     public float MouseY;
 
-    public float HorizontalAxis => Input.GetAxis("Horizontal");
-    public float VerticalAxis => Input.GetAxis("Vertical");
-    public float Sprint => Input.GetAxis("Sprint");
-    public float Walk => Input.GetAxis("Walk");
+    // GetAxisRaw returns exact -1/0/1 with no built-in smoothing — more consistent with physics movement
+    public float HorizontalAxis => Input.GetAxisRaw("Horizontal");
+    public float VerticalAxis => Input.GetAxisRaw("Vertical");
+    public bool Sprint => Input.GetButton("Sprint");
+    public bool Walk => Input.GetButton("Walk");
 
-    public float Attack => Input.GetAxis("Fire1");
-    
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -55,8 +54,5 @@ public class InputManager : MonoBehaviour
 
         MouseX = Input.GetAxis("Mouse X") * _mouseSensitivity;
         MouseY = Input.GetAxis("Mouse Y") * _mouseSensitivity;
-
-        
-        //Horizon => Input.GetAxis("Mouse Y")talAxis = Input.GetAxis("Horizontal");
     }
 }

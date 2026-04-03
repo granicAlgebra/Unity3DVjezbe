@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class PlayerAnimationController : MonoBehaviour
 {
     [SerializeField] private float _walkingBlendValue;
@@ -18,37 +17,54 @@ public class PlayerAnimationController : MonoBehaviour
     private void Start()
     {
         _movement.JumpEvent += OnJump;
+        InputManager.Instance.LeftMouseClick += OnAttackInput;
+    }
+
+    private void OnDestroy()
+    {
+        InputManager.Instance.LeftMouseClick -= OnAttackInput;
     }
 
     private void Update()
     {
         IsGrounded();
         SetVelocity(_movement.VelocityMagnitude / _movement.MaximumVelocity);
-        if (Input.GetMouseButton(0)) 
-        {
-            StartCoroutine(Attack());
-        }
+    }
+
+    private void OnAttackInput()
+    {
+        if (_isAttacking) 
+            return;
+        StartCoroutine(Attack());
     }
 
     public IEnumerator Attack()
     {
         _isAttacking = true;
+
         _animator.SetTrigger(GetHash("Attack"));
+
         yield return StartCoroutine(BlendLayerWeight(1, 1f, _attackBlendDuration));
+
+        float timeout = 3f;
+        float elapsed = 0f;
         AnimatorStateInfo stateInfo;
         do
         {
             yield return null;
+            elapsed += Time.deltaTime;
             stateInfo = _animator.GetCurrentAnimatorStateInfo(1);
-
-        } while (stateInfo.normalizedTime < 0.9f);
+        } 
+        while (stateInfo.normalizedTime < 0.8f && elapsed < timeout);
 
         yield return StartCoroutine(BlendLayerWeight(1, 0f, _attackBlendDuration));
+
+        _isAttacking = false;
     }
 
     public void SetVelocity(float velocityNormalized)
     {
-        _animator.SetFloat(GetHash("Velocity"), velocityNormalized);
+        _animator.SetFloat(GetHash("Velocity"), Mathf.Clamp01(velocityNormalized));
     }
 
     public void OnJump()
