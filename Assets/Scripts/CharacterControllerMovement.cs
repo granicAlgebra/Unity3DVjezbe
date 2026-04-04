@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class CharacterControllerMovement : MonoBehaviour
@@ -17,6 +18,7 @@ public class CharacterControllerMovement : MonoBehaviour
     [SerializeField] private float _slideFriction;
 
     [SerializeField] private AnimationCurve _movementSmooth;
+    [SerializeField] private float _accelerationSpeed = 10f;
 
     private const float GRAVITY = -19.62f;
     private const float GROUNDED_GRAVITY_PULL = -0.5f;
@@ -24,14 +26,15 @@ public class CharacterControllerMovement : MonoBehaviour
     private bool _hasJumped;
     private Vector3 _hitNormal;
     private bool _onSteepSlope;
+    private Vector3 _smoothedMoveDir;
+    private WaitForSeconds _ignoreGroundCheckTime = new WaitForSeconds(0.2f);
+    private bool _ignoreGroundCheck = false;
 
     public event Action JumpEvent;
     public bool IsGrounded {  get; private set; }
     public float VelocityMagnitude { get; private set; }
     public float MaximumVelocity => _sprintSpeed;
 
-    [SerializeField] private float _accelerationSpeed = 10f;
-    private Vector3 _smoothedMoveDir;
 
     void Start()
     {
@@ -111,8 +114,17 @@ public class CharacterControllerMovement : MonoBehaviour
         }
     }
 
+    private IEnumerator IgnoreGroundCheck()
+    {
+        _ignoreGroundCheck = true;
+        yield return _ignoreGroundCheckTime;
+        _ignoreGroundCheck = false;
+    }
+
     private bool CheckIsGrounded()
     {
+        if (_ignoreGroundCheck)
+            return false;
         return Physics.CheckSphere(_groundCheckHolder.position, _groundCheckSphereRadius, _groundCheckLayer);
     }
 
@@ -121,6 +133,7 @@ public class CharacterControllerMovement : MonoBehaviour
         velocity.y = _jumpVelocity;
         JumpEvent?.Invoke();
         _hasJumped = false;
+        StartCoroutine(IgnoreGroundCheck());
     }
 
     private void OnDrawGizmos()
