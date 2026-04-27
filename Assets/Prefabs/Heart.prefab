@@ -44,6 +44,8 @@ GameObject:
   - component: {fileID: 8149337028747204096}
   - component: {fileID: 913746498409552998}
   - component: {fileID: 8018891940907127364}
+  - component: {fileID: 3252186427269543402}
+  - component: {fileID: 3131738484622496553}
   m_Layer: 0
   m_Name: Heart
   m_TagString: Untagged
@@ -121,6 +123,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &8018891940907127364
 BoxCollider:
@@ -143,3 +146,29 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 21.25, y: 9.141302, z: 19.914904}
   m_Center: {x: 0, y: 0.0005633832, z: 10.003746}
+--- !u!114 &3252186427269543402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8182576666942740722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28f25230373a00e4aadd37c9709684f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Collectable
+  _type: 1
+  _addValue: 50
+--- !u!114 &3131738484622496553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8182576666942740722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ae1b2971b649e049acb4ee78edb3606, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Stareable
