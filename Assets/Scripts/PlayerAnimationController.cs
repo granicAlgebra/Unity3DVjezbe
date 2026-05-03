@@ -18,11 +18,13 @@ public class PlayerAnimationController : MonoBehaviour
     {
         _movement.JumpEvent += OnJump;
         InputManager.Instance.LeftMouseClick += OnAttackInput;
+        InputManager.Instance.RightMouseClick += OnSpecialAttackInput;
     }
 
     private void OnDestroy()
     {
         InputManager.Instance.LeftMouseClick -= OnAttackInput;
+        InputManager.Instance.RightMouseClick -= OnSpecialAttackInput;
     }
 
     private void Update()
@@ -35,14 +37,21 @@ public class PlayerAnimationController : MonoBehaviour
     {
         if (_isAttacking) 
             return;
-        StartCoroutine(Attack());
+        StartCoroutine(Attack("Attack"));
     }
 
-    public IEnumerator Attack()
+    private void OnSpecialAttackInput()
+    {
+        if (_isAttacking)
+            return;
+        StartCoroutine(Attack("SpecialAttack"));
+    }
+
+    public IEnumerator Attack(string triggerName)
     {
         _isAttacking = true;
 
-        _animator.SetTrigger(GetHash("Attack"));
+        _animator.SetTrigger(GetHash(triggerName));
 
         yield return StartCoroutine(BlendLayerWeight(1, 1f, _attackBlendDuration));
 

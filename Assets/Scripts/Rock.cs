@@ -16,7 +16,7 @@ public class Rock : MonoBehaviour, IWeapon
         transform.position += _direction * Speed * Time.deltaTime;
     }
 
-    public void Fire(Vector3 position)
+    public void Attack(Vector3 position)
     {
         
         _direction = position - transform.position;
@@ -26,5 +26,10 @@ public class Rock : MonoBehaviour, IWeapon
     {
         transform.position = position;
         enabled = true;
+    }
+
+    public void SpecialAttack(Vector3 position)
+    {
+        throw new System.NotImplementedException();
     }
 }

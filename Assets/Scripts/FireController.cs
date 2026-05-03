@@ -16,6 +16,6 @@ public class FireController : MonoBehaviour
     {
         var weapon = GameObject.Instantiate(_weapon, _weaponStartPosition.position, Quaternion.identity).GetComponent<IWeapon>();
   
-        weapon.Fire(hit.point);    
+        weapon.Attack(hit.point);    
     }
 }

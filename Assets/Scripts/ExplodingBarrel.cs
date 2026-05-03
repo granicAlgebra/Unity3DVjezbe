@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class LandMine : MonoBehaviour, IDamageable
+public class ExplodingBarrel : MonoBehaviour, IDamageable
 {
     [SerializeField] private float _explosionForce;
     [SerializeField] private float _explosionRadius;
@@ -10,14 +10,6 @@ public class LandMine : MonoBehaviour, IDamageable
 
     public void Damage()
     {
-        Explode();
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (!other.CompareTag("Player"))
-            return;
-
         Explode();
     }
 
@@ -45,6 +37,7 @@ public class LandMine : MonoBehaviour, IDamageable
                 }
             }
         }
+
         gameObject.SetActive(false);
         _collider.enabled = false;
     }

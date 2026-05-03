@@ -11,7 +11,7 @@ public class CameraController : MonoBehaviour
 
     void Start()
     {
-        InputManager.Instance.RightMouseClick += OnRightMouseClick;
+        //InputManager.Instance.RightMouseClick += OnRightMouseClick;
     }
 
     private void OnRightMouseClick()
