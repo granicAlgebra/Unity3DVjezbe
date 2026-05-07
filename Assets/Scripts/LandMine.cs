@@ -15,7 +15,7 @@ public class LandMine : MonoBehaviour, IDamageable
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.CompareTag("Player"))
+        if (!other.gameObject.TryGetComponent<GenericRagdoll>(out var ragdoll))
             return;
 
         Explode();

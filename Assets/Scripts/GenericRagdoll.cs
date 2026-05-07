@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
+
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -31,6 +33,8 @@ public class GenericRagdoll : MonoBehaviour
     [SerializeField] private PlayerAnimationController _playerAnimationController;
     [SerializeField] private Animator _playerAnimatior;
     [SerializeField] private IkController _kController;
+    [SerializeField] private NavMeshAgent _navMeshAgent;
+    [SerializeField] private EnemyAnimationController _enemyAnimationController;
     [SerializeField] private CharacterControllerMovement _characterControllerMovement;
 
     [SerializeField] private List<Rigidbody> _ragdollRigidbodies = new List<Rigidbody>();
@@ -65,6 +69,10 @@ public class GenericRagdoll : MonoBehaviour
             _characterControllerMovement.enabled = false;
         if (_kController != null)
             _kController.enabled = false;
+        if (_navMeshAgent != null)
+            _navMeshAgent.enabled = false;
+        if (_enemyAnimationController != null)
+            _enemyAnimationController.enabled=false;
 
         _playerAnimatior.enabled = false;
 
