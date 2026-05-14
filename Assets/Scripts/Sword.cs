@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Sword : MonoBehaviour, IWeapon
 {
+    [SerializeField] private int _damage;
     [SerializeField] private float _attackForce;
     [SerializeField] private float _attackHitboxRadius;
     [SerializeField] private float _throwForce;
@@ -24,8 +25,6 @@ public class Sword : MonoBehaviour, IWeapon
             return;
 
         ragdoll.Die(transform.position, _throwForce * 5, 1f);
-
-      
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -45,9 +44,11 @@ public class Sword : MonoBehaviour, IWeapon
 
         for (int i = 0; i < colliders.Length; i++)
         {
-            if (colliders[i].gameObject.TryGetComponent<GenericRagdoll>(out var ragdoll))
+            if (colliders[i].gameObject.TryGetComponent<Entity>(out var entity))
             {
-                ragdoll.Die(transform.position, _attackForce, _attackHitboxRadius);
+                entity.GetParameter(ParameterType.Health);
+
+                entity.AddToParameter(ParameterType.Health, _damage);
             }
             else if (colliders[i].gameObject.TryGetComponent<IDamageable>(out var damageable))
             {

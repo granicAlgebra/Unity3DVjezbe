@@ -1,0 +1,433 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8501341110215317477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61431bba79d7d7843b82bf1de71703f5, type: 3}
+  m_Name: Sequencer
+  m_EditorClassIdentifier: Assembly-CSharp::TheKiwiCoder.Sequencer
+  state: 0
+  started: 0
+  guid: d2a0c388aabd1c24b8d45bc7ba0e996c
+  position: {x: -902.64233, y: 163.82631}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+  description: 
+  drawGizmos: 0
+  children:
+  - {fileID: 2146146178595692063}
+  - {fileID: 6989314527530596545}
+--- !u!114 &-4910027973459049688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7bf77e26564daa41815cba042a730aa, type: 3}
+  m_Name: InterruptSelector
+  m_EditorClassIdentifier: Assembly-CSharp::TheKiwiCoder.InterruptSelector
+  state: 0
+  started: 0
+  guid: eb3ff5383dfed874ba724c83caf89eb8
+  position: {x: -245, y: -18.160004}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+  description: 
+  drawGizmos: 0
+  children:
+  - {fileID: -8501341110215317477}
+  - {fileID: 2329148809553800149}
+  - {fileID: 7284808876204319115}
+--- !u!114 &-2436904792649915734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 163c147d123e4a945b688eddc64e3ea5, type: 3}
+  m_Name: RootNode
+  m_EditorClassIdentifier: Assembly-CSharp::TheKiwiCoder.RootNode
+  state: 0
+  started: 0
+  guid: 91805bc9fca998e4d84aeb487b6166ce
+  position: {x: -245, y: -268.03998}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+  description: 
+  drawGizmos: 0
+  child: {fileID: -14996824184259308}
+--- !u!114 &-748807781305979435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a5134d9de14153468b48928d3e7359a, type: 3}
+  m_Name: Wait
+  m_EditorClassIdentifier: Assembly-CSharp::TheKiwiCoder.Wait
+  state: 0
+  started: 0
+  guid: 764c21bf027431f4fb3ade4b6e3663d2
+  position: {x: 792.4302, y: 445.8819}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+  description: 
+  drawGizmos: 0
+  duration: 8
+--- !u!114 &-316412083641697451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a5134d9de14153468b48928d3e7359a, type: 3}
+  m_Name: Wait
+  m_EditorClassIdentifier: Assembly-CSharp::TheKiwiCoder.Wait
+  state: 0
+  started: 0
+  guid: 1f743d8c80dbf884ab4b2bb134de2567
+  position: {x: 443.43008, y: 456.882}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+  description: 
+  drawGizmos: 0
+  duration: 2
+--- !u!114 &-14996824184259308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afb5496e8cd973748a10b3e3ef436ebd, type: 3}
+  m_Name: Repeat
+  m_EditorClassIdentifier: Assembly-CSharp::TheKiwiCoder.Repeat
+  state: 0
+  started: 0
+  guid: 18635619054b8854e9fa185a9912612f
+  position: {x: -245, y: -150}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+  description: 
+  drawGizmos: 0
+  child: {fileID: -4910027973459049688}
+  restartOnSuccess: 1
+  restartOnFailure: 0
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d285eb63c2cdd74180de7cfceaa96ad, type: 3}
+  m_Name: Enemy
+  m_EditorClassIdentifier: Assembly-CSharp::TheKiwiCoder.BehaviourTree
+  rootNode: {fileID: -2436904792649915734}
+  treeState: 0
+  nodes:
+  - {fileID: -2436904792649915734}
+  - {fileID: 7284808876204319115}
+  - {fileID: 7316619732393617306}
+  - {fileID: 7332061519737939995}
+  - {fileID: -14996824184259308}
+  - {fileID: -316412083641697451}
+  - {fileID: 6058060209532433392}
+  - {fileID: 2548077827540905391}
+  - {fileID: -748807781305979435}
+  - {fileID: -4910027973459049688}
+  - {fileID: 2329148809553800149}
+  - {fileID: 4670682496000536792}
+  - {fileID: 7367536037863205239}
+  - {fileID: 4160440066913726207}
+  - {fileID: -8501341110215317477}
+  - {fileID: 2146146178595692063}
+  - {fileID: 6989314527530596545}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+--- !u!114 &2146146178595692063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 709a105a5fe1044419da83023daa4312, type: 3}
+  m_Name: HealthCheck
+  m_EditorClassIdentifier: Assembly-CSharp::HealthCheck
+  state: 0
+  started: 0
+  guid: 187f7d44ee103b44c8a8439506ad687f
+  position: {x: -1039, y: 302}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+  description: 
+  drawGizmos: 0
+  HealthPercent: 0.3
+  Health:
+    Type: 0
+    Value: 0
+    Min: 0
+    Max: 0
+--- !u!114 &2329148809553800149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61431bba79d7d7843b82bf1de71703f5, type: 3}
+  m_Name: Sequencer
+  m_EditorClassIdentifier: Assembly-CSharp::TheKiwiCoder.Sequencer
+  state: 0
+  started: 0
+  guid: feec52e6748409d4c8e878ce8597f226
+  position: {x: -245.54451, y: 174.88533}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+  description: 
+  drawGizmos: 0
+  children:
+  - {fileID: 4670682496000536792}
+  - {fileID: 7367536037863205239}
+  - {fileID: 4160440066913726207}
+--- !u!114 &2548077827540905391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a5134d9de14153468b48928d3e7359a, type: 3}
+  m_Name: Wait
+  m_EditorClassIdentifier: Assembly-CSharp::TheKiwiCoder.Wait
+  state: 0
+  started: 0
+  guid: 0e6bafe660de3a7448fb58d8ffd51bbb
+  position: {x: 619.4301, y: 449.88193}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+  description: 
+  drawGizmos: 0
+  duration: 4
+--- !u!114 &4160440066913726207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9890364a0ece964e9fc059bdc24d4e0, type: 3}
+  m_Name: AttackTarget
+  m_EditorClassIdentifier: Assembly-CSharp::AttackTarget
+  state: 0
+  started: 0
+  guid: 3116ec7d34feae642a8d506a64f5f535
+  position: {x: -72.54448, y: 330.8853}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+  description: 
+  drawGizmos: 0
+  AttackRate: 2
+  AttackRange: 2
+  Damage: 20
+--- !u!114 &4670682496000536792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c2cdaf7f634f2c4c9eed1549cbaf79b, type: 3}
+  m_Name: SearchingForEnemy
+  m_EditorClassIdentifier: Assembly-CSharp::SearchingForEnemy
+  state: 0
+  started: 0
+  guid: 6fc58fdd82240d3458f3d6083be67919
+  position: {x: -434.54446, y: 335.88535}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+  description: 
+  drawGizmos: 0
+  EnemyLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  EnemyTag: Player
+  ViewRadius: 12
+  ViewAngle: 120
+  CheckInterval: 0.25
+--- !u!114 &6058060209532433392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee64948bda9e2fe4fb5ad88265395141, type: 3}
+  m_Name: RandomSelector
+  m_EditorClassIdentifier: Assembly-CSharp::TheKiwiCoder.RandomSelector
+  state: 0
+  started: 0
+  guid: 6f5b4818ab5e56740b186321935857dc
+  position: {x: 617.4301, y: 284.88196}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+  description: 
+  drawGizmos: 0
+  children:
+  - {fileID: -316412083641697451}
+  - {fileID: 2548077827540905391}
+  - {fileID: -748807781305979435}
+--- !u!114 &6989314527530596545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d7bb3e9566578f4ea105cffe0712169, type: 3}
+  m_Name: FleeFromTarget
+  m_EditorClassIdentifier: Assembly-CSharp::FleeFromTarget
+  state: 0
+  started: 0
+  guid: 613aaef73add26347963df4cd959319a
+  position: {x: -751, y: 303}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+  description: 
+  drawGizmos: 0
+  Speed: 5
+  Acceleration: 20
+  FleeDistance: 10
+  SampleRadius: 20
+  Tolerance: 1
+--- !u!114 &7284808876204319115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61431bba79d7d7843b82bf1de71703f5, type: 3}
+  m_Name: Sequencer
+  m_EditorClassIdentifier: Assembly-CSharp::TheKiwiCoder.Sequencer
+  state: 0
+  started: 0
+  guid: 6a3a32730e64be549a8bbe6cfd7246d9
+  position: {x: 365.43024, y: 137.88196}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+  description: 
+  drawGizmos: 0
+  children:
+  - {fileID: 7316619732393617306}
+  - {fileID: 7332061519737939995}
+  - {fileID: 6058060209532433392}
+--- !u!114 &7316619732393617306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0a055ff4bd9e6642b3f0dff32a86e1d, type: 3}
+  m_Name: RandomPosition
+  m_EditorClassIdentifier: Assembly-CSharp::RandomPosition
+  state: 0
+  started: 0
+  guid: 59398b694139e414999ca5ebcf68701c
+  position: {x: 159.43013, y: 284.88196}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+  description: 
+  drawGizmos: 0
+  min: {x: -10, y: 30}
+  max: {x: 10, y: 40}
+--- !u!114 &7332061519737939995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4489e3e257543504c8fc9f891246af6c, type: 3}
+  m_Name: MoveToPosition
+  m_EditorClassIdentifier: Assembly-CSharp::MoveToPosition
+  state: 0
+  started: 0
+  guid: 83f1c01403e156b4aac63c6b9155c84d
+  position: {x: 365.43024, y: 281.88196}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+  description: 
+  drawGizmos: 0
+  speed: 1.75
+  stoppingDistance: 0.1
+  updateRotation: 1
+  acceleration: 20
+  tolerance: 1
+--- !u!114 &7367536037863205239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fa6a7d4145ac6240aaa7d5df3ecf1b5, type: 3}
+  m_Name: MoveToTarget
+  m_EditorClassIdentifier: Assembly-CSharp::MoveToTarget
+  state: 0
+  started: 0
+  guid: 7a50cff030ec02c4fb4124bab4506184
+  position: {x: -246.54451, y: 334.88535}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+  description: 
+  drawGizmos: 0
+  Speed: 6
+  StopDistance: 2
+  Acceleration: 20

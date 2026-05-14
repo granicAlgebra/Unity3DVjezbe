@@ -7,18 +7,20 @@ public class Entity : MonoBehaviour
 {
     [SerializeField] private List<Parameter> _parameters;
 
+    public event Action<Parameter> ParameterValueChange;
+
     public bool AddToParameter(ParameterType type, int value)
     {
         var parameter = _parameters.FirstOrDefault(p => p.Type.Equals(type));
         if (parameter == null)
             return false;
 
-        if (parameter.Value >= parameter.Max)
-            return false;
+        //if (parameter.Value >= parameter.Max)
+        //    return false;
        
         parameter.Value += value;
         parameter.Value = Mathf.Clamp(parameter.Value, parameter.Min, parameter.Max);
-
+        ParameterValueChange?.Invoke(parameter);
         return true;
     }
 
@@ -29,6 +31,12 @@ public class Entity : MonoBehaviour
             return 0;
         else 
             return parameter.Value;
+    }
+
+    public Parameter GetParameter(ParameterType type)
+    {
+        var parameter = _parameters.FirstOrDefault(parameter => parameter.Type.Equals(type));
+        return parameter;
     }
 }
 

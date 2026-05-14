@@ -47,13 +47,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BombThrowable
   _throwForce: 20
   _activationTimer: 2
-  _hitboxPosition: {fileID: 6753541361465508272}
+  _colliderOffTime: 0.2
+  _playerTransform: {fileID: 0}
   _explosionForce: 10
   _explosionRadius: 5
   _layerMask:
     serializedVersion: 2
     m_Bits: 257
   _collider: {fileID: 9075107840412027799}
+  _particlePrefab: {fileID: 4113016643717879592, guid: 7edec1e4552037949bb12b607907fb1e, type: 3}
+  _sfxPrefab: {fileID: 9144459228813031282, guid: 3dcee6389462ca64e90230e6adabdee1, type: 3}
+  _explosionSFX: {fileID: 8300000, guid: a9752382d2787c742b4d55081dad8663, type: 3}
 --- !u!1 &7252087600799802219
 GameObject:
   m_ObjectHideFlags: 0

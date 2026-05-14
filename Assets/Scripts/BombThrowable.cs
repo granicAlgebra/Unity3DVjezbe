@@ -3,19 +3,29 @@ using UnityEngine;
 
 public class BombThrowable : MonoBehaviour, IWeapon
 {
+    [SerializeField] private int _bombAmount = 3;
     [SerializeField] private float _throwForce;
     [SerializeField] private float _activationTimer = 2f;
-    [SerializeField] private Transform _hitboxPosition;
-
+    [SerializeField] private float _colliderOffTime = 0.2f;
+    [SerializeField] private Transform _playerTransform;
     [SerializeField] private float _explosionForce;
     [SerializeField] private float _explosionRadius;
     [SerializeField] private LayerMask _layerMask;
     [SerializeField] private Collider _collider;
-    private bool _hasExploded = false;
+    [SerializeField] private ParticleSystem _particlePrefab;
+    [SerializeField] private AudioSource _sfxPrefab;
+    [SerializeField] private AudioClip _explosionSFX;
+   
 
     private bool _isThrown = false;
     private Rigidbody _rigidbody;
-
+    private Vector3 _startPosition;
+    private Transform _startParent;
+    private void Start()
+    {
+        _startPosition = transform.localPosition;
+        _startParent = transform.parent;
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (!_isThrown)
@@ -30,26 +40,12 @@ public class BombThrowable : MonoBehaviour, IWeapon
 
     public void Attack(Vector3 position)
     {
-        transform.parent = null;
-        _rigidbody = gameObject.AddComponent<Rigidbody>();
-        _rigidbody.interpolation = RigidbodyInterpolation.Interpolate;
-        _rigidbody.collisionDetectionMode = CollisionDetectionMode.Continuous;
-        Vector3 direction = (_hitboxPosition.forward + (Vector3.up * 0.15f)).normalized;
-        _rigidbody.AddForce(direction * _throwForce * 0.5f, ForceMode.Impulse);
-        _rigidbody.AddTorque(transform.up * 100, ForceMode.Impulse);
         StartCoroutine(BombActivationCoroutine());
     }
 
     public void SpecialAttack(Vector3 position)
     {
-        transform.parent = null;
-        _rigidbody = gameObject.AddComponent<Rigidbody>();
-        _rigidbody.interpolation = RigidbodyInterpolation.Interpolate;
-        _rigidbody.collisionDetectionMode = CollisionDetectionMode.Continuous;
-        Vector3 direction = (_hitboxPosition.forward + (Vector3.up * 0.15f)).normalized;
-        _rigidbody.AddForce(direction * _throwForce, ForceMode.Impulse);
-        _rigidbody.AddTorque(transform.up * 100, ForceMode.Impulse);
-        StartCoroutine(BombActivationCoroutine());
+        Attack(position);
     }
 
     public void SetStartPosition(Vector3 position)
@@ -59,12 +55,8 @@ public class BombThrowable : MonoBehaviour, IWeapon
 
     public void Explode()
     {
-        if (_hasExploded)
-        {
-            return;
-        }
-        _hasExploded = true;
-
+        VFXManager.Instance.PlayVFX(_particlePrefab, transform.position);
+        SFXManager.Instance.PlaySFX(_sfxPrefab, transform.position, _explosionSFX, 2);
         var colliders = Physics.OverlapSphere(transform.position, _explosionRadius, _layerMask, QueryTriggerInteraction.Collide);
 
         for (int i = 0; i < colliders.Length; i++)
@@ -82,12 +74,31 @@ public class BombThrowable : MonoBehaviour, IWeapon
             }
         }
 
-        gameObject.SetActive(false);
+        _bombAmount--;
+        if (_bombAmount < 0)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Destroy(_rigidbody);
+           transform.parent = _startParent;
+           transform.localPosition = _startPosition;
+        }
         _collider.enabled = false;
     }
 
     IEnumerator BombActivationCoroutine()
     {
+        _collider.enabled = false;
+        transform.parent = null;
+        _rigidbody = gameObject.AddComponent<Rigidbody>();
+        _rigidbody.interpolation = RigidbodyInterpolation.Interpolate;
+        _rigidbody.collisionDetectionMode = CollisionDetectionMode.Continuous;
+        Vector3 direction = (_playerTransform.forward + (Vector3.up * 0.15f)).normalized;
+        _rigidbody.AddForce(direction * _throwForce * 0.5f, ForceMode.Impulse);
+        yield return new WaitForSeconds(_colliderOffTime);
+        _collider.enabled = true;
         yield return new WaitForSeconds(_activationTimer);
         _isThrown = true;
         Explode();

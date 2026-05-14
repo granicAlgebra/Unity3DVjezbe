@@ -31,8 +31,8 @@ public class InputManager : MonoBehaviour
 
         Instance = this;
 
-        //Cursor.visible = _cursorVisible;
-        //Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = _cursorVisible;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     void Update()

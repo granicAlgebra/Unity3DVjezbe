@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class WeaponController : MonoBehaviour
@@ -20,6 +21,12 @@ public class WeaponController : MonoBehaviour
     public void Attack()
     {
         Vector3 targetPosition = Target != null ? Target.position : Vector3.zero; 
+        if (_currentWeapon == null)
+        {
+            var currentWeapon = Weapons.First(w => w.activeSelf);
+            currentWeapon.SetActive(true);
+            _currentWeapon = currentWeapon.GetComponent<IWeapon>();
+        }
         _currentWeapon.Attack(targetPosition);
     }
 

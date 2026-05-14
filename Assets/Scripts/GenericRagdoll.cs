@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using TheKiwiCoder;
+using System;
 
 
 #if UNITY_EDITOR
@@ -36,6 +38,8 @@ public class GenericRagdoll : MonoBehaviour
     [SerializeField] private NavMeshAgent _navMeshAgent;
     [SerializeField] private EnemyAnimationController _enemyAnimationController;
     [SerializeField] private CharacterControllerMovement _characterControllerMovement;
+    [SerializeField] private BehaviourTreeRunner _behaviourTreeRunner;
+    [SerializeField] private Entity _entity;
 
     [SerializeField] private List<Rigidbody> _ragdollRigidbodies = new List<Rigidbody>();
     [SerializeField] private List<Collider> _ragdollColliders = new List<Collider>();
@@ -44,6 +48,17 @@ public class GenericRagdoll : MonoBehaviour
     private void Awake()
     {
         SetRagdollKinematic(true);
+        if (_entity != null)
+            _entity.ParameterValueChange += OnParameterValueChange;
+    }
+
+    private void OnParameterValueChange(Parameter parameter)
+    {
+        if (parameter.Type.Equals(ParameterType.Health))
+        {
+            if (parameter.Value == parameter.Min)
+                Die();
+        }
     }
 
     public void SetRagdollKinematic(bool value)
@@ -73,6 +88,8 @@ public class GenericRagdoll : MonoBehaviour
             _navMeshAgent.enabled = false;
         if (_enemyAnimationController != null)
             _enemyAnimationController.enabled=false;
+        if (_behaviourTreeRunner != null)
+            _behaviourTreeRunner.enabled = false;   
 
         _playerAnimatior.enabled = false;
 
