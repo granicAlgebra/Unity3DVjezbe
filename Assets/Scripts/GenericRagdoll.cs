@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using TheKiwiCoder;
 using System;
-
+using DG.Tweening;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -39,6 +39,7 @@ public class GenericRagdoll : MonoBehaviour
     [SerializeField] private EnemyAnimationController _enemyAnimationController;
     [SerializeField] private CharacterControllerMovement _characterControllerMovement;
     [SerializeField] private BehaviourTreeRunner _behaviourTreeRunner;
+    [SerializeField] private DissolveEffect _dissolveEffect;
     [SerializeField] private Entity _entity;
 
     [SerializeField] private List<Rigidbody> _ragdollRigidbodies = new List<Rigidbody>();
@@ -89,7 +90,12 @@ public class GenericRagdoll : MonoBehaviour
         if (_enemyAnimationController != null)
             _enemyAnimationController.enabled=false;
         if (_behaviourTreeRunner != null)
-            _behaviourTreeRunner.enabled = false;   
+            _behaviourTreeRunner.enabled = false;
+        if (_dissolveEffect != null)
+            DOVirtual.DelayedCall(5, () => 
+            { 
+                _dissolveEffect.DissolveOut(); 
+            });
 
         _playerAnimatior.enabled = false;
 
